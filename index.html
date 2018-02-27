@@ -2,6 +2,7 @@
 <title>PubNub ChatEngine</title>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"></link>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
@@ -39,7 +40,7 @@
     </div>
     <!-- end container -->
 
-    <div id="asdf"></div>
+    <div class="ce-poll-container" id="asdf"></div>
     
     <script id="message-template" type="text/x-handlebars-template">
         <li class="clearfix">
@@ -92,6 +93,7 @@ body {
   font: 14px/20px "Lato", Arial, sans-serif;
   padding: 20px 0;
   color: white;
+  margin: 0;
 }
 
 .container {
@@ -100,6 +102,23 @@ body {
   background: #444753;
   border-radius: 5px;
 }
+
+/* make it responsive to screen width */
+@media (max-width: 749px) {
+  .people-list {
+    display: none;
+  }
+
+  .container {
+    max-width: 749px;
+    width: auto;
+  }
+
+  div.chat {
+    width: 100vw;
+  }
+}
+/* end */
 
 .people-list {
   width: 260px;
@@ -315,6 +334,22 @@ body {
   line-height: 35px;
   color: blue;
   font-size: 10px;
+}
+
+#chat-engine-poll-title {
+  color: #000000;
+}
+
+/* this block is only relevant to this demo */
+@media (max-width: 749px) {
+  .ce-poll-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 /* END MAKE A REALTIME POLL */
