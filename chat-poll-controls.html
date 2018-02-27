@@ -71,25 +71,30 @@
     });
 
     function startPoll() {
+        var inputdata = document.querySelectorAll("input"); 
         var payload = {
           "chat_channel": "chat-engine",
-          "pollTitle": "Yo title",
+          "pollTitle": inputdata[0].value,
           "pollOptions": [
             {
-              "name": "Amanda",
+              "name": inputdata[1].value,
               "vote": 0
             },
             {
-              "name": "Katie",
+              "name": inputdata[2].value,
               "vote": 0
             },
             {
-              "name": "Janice",
+              "name": inputdata[3].value,
               "vote": 0
-            }
+            },
+            {
+              "name": inputdata[4].value,
+              "vote": 0
+            },
           ],
           "pollStartTT": 0,
-          "pollEndTT": +new Date() + 60000
+          "pollEndTT": (+new Date()) + 60 * 1000
         };
 
         pubnub.publish({
