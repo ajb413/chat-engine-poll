@@ -52,10 +52,22 @@ set options for a poll in the test payload and hit publish
   font-size: 10px;
 }
 
+/* this block is only relevant to this demo */
+@media (max-width: 749px) {
+  .ce-poll-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    height: 100%;
+    width: 100%;
+  }
+}
+
 </style>
 
-<!-- HTML -->
-<div id="poll-container"></div>
+<!-- HTML - the class is only needed in this demo -->
+<div id="poll-container" class="ce-poll-container"></div>
 
 <!-- JS -->
 <script>
