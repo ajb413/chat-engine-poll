@@ -28,6 +28,12 @@ window.ChatEnginePoll = function (chatEngine, pollDomId, pollTitle, pollOptions,
     title = document.createElement("H3");
     title.innerText = pollTitle;
     title.id = "chat-engine-poll-title";
+    closeButton = document.createElement("BUTTON");
+    closeButton.textContent = "X";
+    closeButton.addEventListener("click", function(e) {
+      container.style.display = 'none';
+    }, false);
+    title.appendChild(closeButton);
     container.appendChild(title);
   }
 
