@@ -72,7 +72,7 @@ set options for a poll in the test payload and hit publish
 <!-- JS -->
 <script>
   // Make a poll dom container
-  var pollDomId = "asdf";
+  var pollDomId = "poll-container";
   var myPoll;
   // get past polls and verify that the poll is currently active
   // based on the start and end time bounds of the poll
