@@ -6,6 +6,8 @@ window.ChatEnginePoll = function (chatEngine, pollDomId, pollTitle, pollOptions,
   }
 
   var date = new Date().getTime();
+  document.getElementById(pollDomId).style.display = 'none';
+  document.getElementById(pollDomId).innerHTML = '';
 
   if (date > pollEndTT || date < pollStartTT) {
     return;
@@ -15,7 +17,7 @@ window.ChatEnginePoll = function (chatEngine, pollDomId, pollTitle, pollOptions,
 
   chatEngine.pubnub.addListener({
       message: increment
-  })
+  });
 
   chatEngine.pubnub.subscribe({
       channels: [pollChannel] 
@@ -24,17 +26,16 @@ window.ChatEnginePoll = function (chatEngine, pollDomId, pollTitle, pollOptions,
   // Put the poll title into the dom if it's not already there
   var title = document.getElementById("chat-engine-poll-title");
   if (!title) {
-    var container = document.getElementById(pollDomId);
     title = document.createElement("H3");
     title.innerText = pollTitle;
     title.id = "chat-engine-poll-title";
     closeButton = document.createElement("BUTTON");
     closeButton.textContent = "X";
     closeButton.addEventListener("click", function(e) {
-      container.style.display = 'none';
+      document.getElementById(pollDomId).style.display = 'none';
     }, false);
     title.appendChild(closeButton);
-    container.appendChild(title);
+    document.getElementById(pollDomId).appendChild(title);
   }
 
   function sendData(msg) {
@@ -82,6 +83,10 @@ window.ChatEnginePoll = function (chatEngine, pollDomId, pollTitle, pollOptions,
   };
 
   function increment(message) {
+    try{
+        if (message.message.data.pollTitle.length > 0)
+            document.getElementById(pollDomId).style.display = 'block';
+    } catch(e) {}
     message = message.message
     for (var i=0; i<data.length; i++) {
       var el = data[i];
