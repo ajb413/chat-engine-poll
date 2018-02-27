@@ -13,6 +13,12 @@ If you were building this from scratch you would:
 - add the code in `create-poll-pfunc.js` to a PubNub Function with a randomized channel
 - execute the code in the test payload in the PubNub Function file `create-poll-pfunc.js` to make a new poll for all users in the global chat
 
+## Make a [PubNub Function Event Handler](https://www.pubnub.com/docs/tutorials/pubnub-functions)
+
+following the comments in `create-poll-pfunc.js`
+set options for a poll in the test payload and hit publish
+
+
 ## Add the following to your web page to get this working
 
 ```html
