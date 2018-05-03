@@ -1,0 +1,114 @@
+<html>
+<head>
+    <title>Chat Poll</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue";
+            background: #6A6C75;
+            color: #fff;
+        }
+        h1 {
+            font-weight: 100;
+            text-align: center;
+            font-size: 100px;
+        }
+        .app label {
+            display: inline-block;
+            font-size: 20px;
+            width: 300px;
+            text-align: right;
+        }
+        .app {
+            
+        }
+        .app input {
+            font-size: 20px;
+            padding: 20px;
+            margin: 20px;
+            width: 300px;
+        }
+        .app input#subject {
+            width: 600px;
+            background-color: #8fb7b1;
+            border: 1px solid #fff;
+        }
+        .app button {
+            cursor: pointer;
+            font-size: 30px;
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 30px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<div class="app">
+    <h1>Chat Poll</h1>
+
+    <div><input id="subject" value="Who will score?"></div>
+    <div>
+        <label>Poll Option A:</label><input value="Dan"><br>
+        <label>Poll Option B:</label><input value="Jim">
+    </div>
+    <div>
+        <label>Poll Option C:</label><input value="Bob"><br>
+        <label>Poll Option D:</label><input value="Sam">
+    </div>
+
+    <div>
+        <label></label>
+        <button id="start-poll">Start Poll</button>
+        <!-- <button id="end-poll">End Poll</button> -->
+    </div>
+</div>
+<script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.20.1.js"></script>
+<script>(function(){
+    var pubnub = new PubNub({
+        publishKey   : 'pub-c-af4a0fa9-6c63-4220-b3d6-c0ecf29ef66c'
+    ,   subscribeKey : 'sub-c-4256939e-1bfd-11e8-a7d0-2e884fd949d2'
+    ,   secretKey    : 'sec-c-YmQwNGMyOTEtM2NlZS00NWQ3LWI5MGQtMWYyOTk5ZTczNWUx'
+    });
+
+    function startPoll() {
+        var inputdata = document.querySelectorAll("input"); 
+        var payload = {
+          "chat_channel": "chat-engine",
+          "pollTitle": inputdata[0].value,
+          "pollOptions": [
+            {
+              "name": inputdata[1].value,
+              "vote": 0
+            },
+            {
+              "name": inputdata[2].value,
+              "vote": 0
+            },
+            {
+              "name": inputdata[3].value,
+              "vote": 0
+            },
+            {
+              "name": inputdata[4].value,
+              "vote": 0
+            },
+          ],
+          "pollStartTT": 0,
+          "pollEndTT": (+new Date()) + 60 * 1000
+        };
+
+        pubnub.publish({
+            channel : 'chat-engine-poll'
+        ,   message : payload
+        });
+    }
+
+    document.getElementById("start-poll").addEventListener( "click", () => {
+        startPoll();
+    } );
+
+})();</script>
+
+
+</body>
+</html>

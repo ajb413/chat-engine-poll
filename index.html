@@ -2,7 +2,9 @@
 <title>PubNub ChatEngine</title>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"></link>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
@@ -27,7 +29,7 @@
                     <div class="chat-with">ChatEngine Demo Chat</div>
                 </div>
             </div>
-            <div class="chat-history">
+            <div class="chat-history" id="chat-history">
                 <ul></ul>
             </div>
             <form id="sendMessage" class="chat-message clearfix">
@@ -87,35 +89,49 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
+li {
+  list-style: none;
+}
 
 body {
-  background: #C5DDEB;
+  background: #f2f5f8;
   font: 14px/20px "Lato", Arial, sans-serif;
   padding: 20px 0;
   color: white;
   margin: 0;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .container {
   margin: 0 auto;
   width: 750px;
+  overflow: hidden;
   background: #444753;
   border-radius: 5px;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 /* make it responsive to screen width */
 @media (max-width: 749px) {
   .people-list {
     display: none;
+    overflow: hidden;
   }
 
   .container {
-    max-width: 749px;
+    max-width: 449px;
     width: auto;
+    overflow: hidden;
   }
 
   div.chat {
     width: 100vw;
+    overflow: hidden;
   }
 }
 /* end */
@@ -144,7 +160,7 @@ body {
 }
 .people-list ul {
   padding: 20px;
-  height: 500px;
+  /*height: 500px;*/
 }
 .people-list ul li {
   padding-bottom: 20px;
@@ -163,10 +179,24 @@ body {
   color: #92959E;
 }
 
+/*
+#sendMessageRel {
+   position: relative;
+}
+#sendMessage {
+   position: absolute;
+   bottom: 10px;
+}
+*/
+
+#asdf {
+    display: none;
+}
+
 .chat {
   width: 490px;
   float: left;
-  background: #F2F5F8;
+  background: #f2f5f8;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   color: #434651;
@@ -181,7 +211,7 @@ body {
 .chat .chat-header .chat-about {
   float: left;
   padding-left: 10px;
-  margin-top: 6px;
+  margin-top: 14px;
 }
 .chat .chat-header .chat-with {
   font-weight: bold;
@@ -200,7 +230,7 @@ body {
   padding: 30px 30px 20px;
   border-bottom: 2px solid white;
   overflow-y: scroll;
-  height: 300px;
+  max-height: 400px;
 }
 .chat .chat-history .message-data {
   margin-bottom: 15px;
@@ -318,11 +348,14 @@ body {
   font: 10px sans-serif;
   background-color: #e74c3c;
   text-align: right;
+  width: 49px;
+  max-width: 250px;
+  min-width: 60px;
   padding: 3px;
   margin: 1px;
   height: 40px;
   line-height: 35px;
-  color: white;
+  color: #f2f2f1;
   margin-left: 120px;
 }
 
@@ -399,11 +432,11 @@ var generatePerson = function(online) {
 
 </script>
 
-<script type="text/javascript">
-    // create a new instance of ChatEngine
+<script>
+// create a new instance of ChatEngine
 ChatEngine = ChatEngineCore.create({
-    publishKey: 'pub-c-a46a7758-eeed-4835-bc52-53655550cdd8',
-    subscribeKey: 'sub-c-9b6dd76e-4eff-11e8-8e86-76fe4fd11787'
+    publishKey: 'pub-c-af4a0fa9-6c63-4220-b3d6-c0ecf29ef66c',
+    subscribeKey: 'sub-c-4256939e-1bfd-11e8-a7d0-2e884fd949d2'
 });
 // use a helper function to generate a new profile
 let newPerson = generatePerson(true);
