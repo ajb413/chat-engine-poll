@@ -83,7 +83,6 @@
 </body>
 
 <style type="text/css">
-
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
@@ -104,6 +103,10 @@ body {
   overflow: hidden;
   overflow-y: hidden;
   overflow-x: hidden;
+}
+
+h1, div, span, label {
+  font: 14px/20px "Lato", Arial, sans-serif;
 }
 
 .container {
@@ -190,7 +193,8 @@ body {
 */
 
 #asdf {
-    display: none;
+    transform: translate(105vw);
+    transition: all 0.5s;
 }
 
 .chat {
@@ -345,32 +349,60 @@ body {
 /* MAKE A REALTIME POLL */
 
 .bar {
-  font: 10px sans-serif;
-  background-color: #e74c3c;
-  text-align: right;
-  width: 49px;
-  max-width: 250px;
-  min-width: 60px;
-  padding: 3px;
-  margin: 1px;
-  height: 40px;
-  line-height: 35px;
-  color: #f2f2f1;
-  margin-left: 120px;
+    font: 10px sans-serif;
+    text-align: right;
+    max-width: 220px;
+    margin: 1px;
+    height: 40px;
+    line-height: 35px;
+    color: #f2f2f1;
+    margin-left: 120px;
+    color: white;
+    padding: 8px 18px 8px 10px;
+    line-height: 26px;
+    font-size: 16px;
+    border-radius: 7px;
+    margin-bottom: 15px;
+    position: relative;
+    background: #86bb71;
+    transition: all 1s;
+}
+
+.bar-wrapper {
+    margin-left: 20px;
 }
 
 .vote-btn {
-  border: solid 1px #20538D;
-  height: 40px;
-  width: 100px;
-  float: left;
-  line-height: 35px;
-  color: blue;
-  font-size: 10px;
+    border-radius: 7px;
+    border: solid 0px #20538d;
+    height: 40px;
+    width: 100px;
+    float: left;
+    line-height: 35px;
+    font-size: 10px;
+    color: #fafaf2;
+    background-color: #aaa;
 }
 
 #chat-engine-poll-title {
-  color: #000000;
+  color: #5a5a5f;
+  margin: 40px 0;
+  padding: 40px 0;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 100;
+  font-family: "Helvetica Neue";
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(100,100,100,0.3);
+}
+
+#chat-engine-poll-close {
+    background: #eeeee2;
+    color: #43434f;
+    display: block;
+    border-radius: 100px;
+    padding: 10px;
+    margin: 10px;
 }
 
 /* this block is only relevant to this demo */
@@ -379,14 +411,13 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    background: white;
+    background: rgba(242,245,248,0.95);
     height: 100%;
     width: 100%;
   }
 }
 
 /* END MAKE A REALTIME POLL */
-
 </style>
 
 <script type="text/javascript">
